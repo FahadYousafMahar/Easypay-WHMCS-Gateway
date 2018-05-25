@@ -34,8 +34,11 @@ Things you need:
 ```
 
 Now your clients can pay with EasyPay - EasyPaisa.
-
 If you are stuck anywhere or need any help you can ask me or feel free to check WHMCS Developer Documentation.
+### Screenshot
+
+![WHMCS EasyPay Module ScreenShot](https://raw.githubusercontent.com/FahadYousafMahar/easypay-whmcs-gateway/master/scrnshot.PNG)
+
 ## Built With
 
 * [BRACKETS](http://www.brackets.io/) - The Best Code Editor in Web & World (Ranked by ME - the Author)
