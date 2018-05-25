@@ -3,7 +3,7 @@
  * WHMCS EasyPay Module Callback
  *
  * This is the EasyPay (EasyPaisa) Payment Module for WebIT.pk Billing Area
- *
+ * 
  *  __          __  _    _____ _______      _
  * \ \        / / | |  |_   _|__   __|    | |
  *  \ \  /\  / /__| |__  | |    | |  _ __ | | __
@@ -12,7 +12,8 @@
  *     \/  \/ \___|_.__/_____|  |_(_) .__/|_|\_\
  *                                  | |
  *                                  |_|
- *
+ * 
+ * (^-^) I've used my company name at many places in this code. Customize those strings before use
  * @see http://webit.pk/
  * @copyright Copyright (c) WebIT.pk Limited 2017-Onwards
  */
@@ -27,7 +28,9 @@ $gatewayModuleName = basename(__FILE__, '.php');
 
 // Fetch gateway configuration parameters.
 $gatewayParams = getGatewayVariables($gatewayModuleName);
-$systemUrl=$gatewayParams['systemurl'];
+$systemUrl = $gatewayParams['systemurl'];
+$accountId = $gatewayParams['accountID'];
+
 // Die if module is not active.
 if (!$gatewayParams['type']) {
     die("Module Not Activated");
@@ -94,7 +97,7 @@ if (isset($_GET['url']))
 {
 // Matching if the URL == easypay.easypaisa.com.pk
 $web = '/^https:\/\/easypay\.easypaisa\.com\.pk\//i';
-$url=$_GET['url'];
+$url = $_GET['url'];
 if (preg_match($web,$url)){
     // If the URL was easypay's original url then we should cURL it to extract Transaction Result.
     // Using cURL to extract EasyPay IPN JSON data sent to the Callback.
@@ -164,7 +167,7 @@ checkCbTransID($transactionId."<br>".$paymentMethod);
  */
 logTransaction($gatewayParams['name'], $_POST, "PAID");
 
-if ($status=="PAID" && $storeId == '6170'){
+if ($status=="PAID" && $storeId == $accountId){
     /**
      * Add Invoice Payment.
      *
