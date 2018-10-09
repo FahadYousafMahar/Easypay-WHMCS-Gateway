@@ -28,6 +28,7 @@ Things you need:
     Display Name    : EasyPay
     Account ID      : XXXX
     Secret Hash Key : XXXXYYYYZZZZ
+    Test Mode 		: Yes/No
     Callback URL    : https://YourWHMCSinstallationDIRECTORY/modules/callback/EasyPay.php
 7- Activate the gateway & Your WHMCS setup is done.
 8- Now move to Easy Pay Merchant portal and set IPN Handler to https://YourWHMCSinstallationDIRECTORY/modules/callback/EasyPay.php
