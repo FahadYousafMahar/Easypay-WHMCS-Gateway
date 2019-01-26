@@ -31,6 +31,17 @@ $gatewayParams = getGatewayVariables($gatewayModuleName);
 $systemUrl = $gatewayParams['systemurl'];
 $accountId = $gatewayParams['accountID'];
 
+/**
+ * Test Mode yes/no
+ * Added in v.1.1
+ */
+$testMode = $gatewayParams['testMode'];
+if ( !$testMode ) {
+    $confirmUrl = 'https://easypay.easypaisa.com.pk/easypay/Confirm.jsf';
+}else{
+    $confirmUrl = 'https://easypaystg.easypaisa.com.pk/easypay/Confirm.jsf';
+}
+
 // Die if module is not active.
 if (!$gatewayParams['type']) {
     die("Module Not Activated");
@@ -39,26 +50,20 @@ if (!$gatewayParams['type']) {
 <?php if(isset($_GET['auth_token'])){ ?>
 <html>
 <head>
-<title>Loading ...</title>
+  <title>Loading ...</title>
 </head>
-    <script language="javascript">
-  setTimeout( function() { document.getElementById("formButton").click(); }, 3000);
+<body>
+    <form action="<?php echo $confirmUrl;?>" method="POST" id="easyPayAuthForm">
+        <input type="hidden" name="auth_token" value="<?php echo $_GET['auth_token']; ?>">
+        <input type="hidden" name="postBackURL" value="<?php echo $callBackURL; ?>">
+        <button type="submit" name="pay" class="btn btn-success">Processing...</button>
+    </form>
+    <script>
+        (function(){
+            document.getElementById("easyPayAuthForm").submit();
+        })();
     </script>
-<div class="content">
-  <h2>Loading ...</h2>
-</div>
-<div class="content">
-  <h1>You are being redirected to EasyPay Secure Checkout</h1>
-  <form action="https://easypay.easypaisa.com.pk/easypay/Confirm.jsf " method="POST">
-<input name="auth_token" value="<?php echo $_GET['auth_token'] ?>" hidden = "true"/>
-<input name="postBackURL" value="<?php echo $systemUrl.'/modules/gateways/callback/easypay.php' ?>" hidden =
-"true"/>
-<input value="confirm" id="formButton" hidden="true" type ="submit" name= "pay"/>
-</form>
-  <br>
-  <h2>WebIT.pk</h2>
-<p>Hosting &amp; Domains</p>
-</div>
+</body>
 </html>
 
 <?php exit; }
@@ -79,7 +84,7 @@ elseif (isset($_GET['paymentToken']))
 <div class="content">
   <h1>Token # <?php echo $_GET['paymentToken'] ?></h1>
   <h2>WebIT.pk</h2>
-<p>Hosting &amp; Domains</p>
+  <p>Hosting &amp; Domains</p>
 </div>
 </html>
 <?php exit; }

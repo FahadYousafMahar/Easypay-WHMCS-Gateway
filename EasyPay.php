@@ -84,7 +84,18 @@ function easypay_config()
             'Size' => '32',
             'Default' => '',
             'Description' => 'Enter your Easy Paisa Merchant Secret Hash Key ',
-        )
+        ),
+        /**
+         * Test Mode Option Added 
+         * Author: Shaz3e
+         * @url shaz3e.com
+         */
+        'testMode' => array(
+            'FriendlyName' => 'Test Mode',
+            'Type' => 'yesno',
+            'Default' => '',
+            'Description' => 'Tick to enable test mode (Optional)',
+        ),
     );
 }
 
@@ -148,6 +159,7 @@ function easypay_link($params)
     // Gateway Configuration Parameters
     $accountId = $params['accountID'];
     $hashKey = $params['hashkey'];
+    $testMode = $params['testMode'];
 
     // Invoice Parameters
     $invoiceId = $params['invoiceid'];
@@ -184,9 +196,19 @@ function easypay_link($params)
 	    $currentDate = new DateTime();
 	    $currentDate->modify('+ 10 day');
     $expiryDate = $currentDate->format('Ymd His'); // Conversion for expiry date&time
-    $url = 'https://easypay.easypaisa.com.pk/easypay/Index.jsf'; // EasyPay Portal URL
+    /**
+     * Test Mode yes/no
+     * Added in v.1.1
+     */
+    if ( !$testMode ) {
+        $url = 'https://easypay.easypaisa.com.pk/easypay/Index.jsf';
+        $confirmUrl = 'https://easypay.easypaisa.com.pk/easypay/Confirm.jsf';
+    }else{
+        $url = 'https://easypaystg.easypaisa.com.pk/easypay/Index.jsf';
+        $confirmUrl = 'https://easypaystg.easypaisa.com.pk/easypay/Confirm.jsf';
+    }
     $amount = number_format($amount,1,'.', ''); //Converting amount to one-decimal point
-    $callback = $systemUrl.'modules/gateways/callback/easypay.php'; // Callback
+    $callback = $systemUrl.'modules/gateways/callback/EasyPay.php'; // Callback
 
     // Generation of MerchantHashedRequest
     $hash = getHashedRequest($hashKey, $orderId, $amount, $autoRedirect, $email, $expiryDate, $storeId, $callback);
@@ -203,12 +225,13 @@ function easypay_link($params)
     $postfields['paymentMethod'] = $paymentMode;
     $postfields['postBackURL'] = $callback;
     // Start of HTML form with action = EasyPay Portal URL
-    $htmlOutput = '<form method="post" action="' . $url . '">';
+    $htmlOutput = '';
+    $htmlOutput .= '<form action="'.$url.'" method="POST">';
     // Generation of <input> tags with Parameters to be sent to EasyPay
     foreach ($postfields as $k => $v) {
         $htmlOutput .= '<input type="hidden" name="' . $k . '" value="'. $v. '" />';
     }
-     $htmlOutput .= '<input type="submit" style="width:250px;" value="submit" />';
+     $htmlOutput .= '<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-credit-card"></i> '.$langPayNow.'</button>';
     // End HTML Form
     $htmlOutput .= '</form>';
     return $htmlOutput;
