@@ -1,21 +1,10 @@
 <?php
 /**
  * WHMCS EasyPay Module Callback
- *
- * This is the EasyPay (EasyPaisa) Payment Module for WebIT.pk Billing Area
- * 
- *  __          __  _    _____ _______      _
- * \ \        / / | |  |_   _|__   __|    | |
- *  \ \  /\  / /__| |__  | |    | |  _ __ | | __
- *   \ \/  \/ / _ \ '_ \ | |    | | | '_ \| |/ /
- *    \  /\  /  __/ |_) || |_   | |_| |_) |   <
- *     \/  \/ \___|_.__/_____|  |_(_) .__/|_|\_\
- *                                  | |
- *                                  |_|
- * 
+ * This is IPN Handler for WHMCS EasyPay (EasyPaisa) Payment Module
  * (^-^) I've used my company name at many places in this code. Customize those strings before use
- * @see http://webit.pk/
- * @copyright Copyright (c) WebIT.pk Limited 2017-Onwards
+ * @author Fahad Yousaf Mahar (http://webit.pk/)
+ * @license MIT
  */
 
 // Require libraries needed for gateway module functions.
@@ -55,7 +44,7 @@ if (!$gatewayParams['type']) {
 <body>
     <form action="<?php echo $confirmUrl;?>" method="POST" id="easyPayAuthForm">
         <input type="hidden" name="auth_token" value="<?php echo $_GET['auth_token']; ?>">
-        <input type="hidden" name="postBackURL" value="<?php echo $callBackURL; ?>">
+        <input type="hidden" name="postBackURL" value="<?php echo $systemUrl.'modules/gateways/callback/EasyPay.php'; ?>">
         <button type="submit" name="pay" class="btn btn-success">Processing...</button>
     </form>
     <script>
@@ -83,8 +72,8 @@ elseif (isset($_GET['paymentToken']))
     </div>
 <div class="content">
   <h1>Token # <?php echo $_GET['paymentToken'] ?></h1>
-  <h2>WebIT.pk</h2>
-  <p>Hosting &amp; Domains</p>
+  <h2>EasyPaisa</h2>
+  <p>Payments</p>
 </div>
 </html>
 <?php exit; }
@@ -92,7 +81,11 @@ elseif (isset($_GET['paymentToken']))
 elseif(isset($_GET['orderRefNumber']))
 {
 $invoiceId = $_GET['orderRefNumber'];
-if($_GET['success']=="true"){$status='paymentsuccess=1';}else{$status='paymentfailed=1';} ?>
+if($_GET['success']=="true"){
+    $status='paymentsuccess=1';
+}else{
+    $status='paymentfailed=1';
+} ?>
 <script language="javascript">
   window.location.replace("<?php echo $systemUrl.'viewinvoice.php?id='.$invoiceId."&".$status ?>");
     </script>
