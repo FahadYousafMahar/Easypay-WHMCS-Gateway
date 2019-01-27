@@ -31,7 +31,7 @@ The gateway enables EasyPaisa Token Payments, Mobile Account Payments & Visa/Mas
 
 Now your clients can pay with EasyPay - EasyPaisa.
 
-If you are stuck anywhere or need any help you can ask me or feel free to check WHMCS Developer Documentation.
+If you are stuck anywhere or need any help you can raise an issue.
 ### Screenshot
 
 ![WHMCS EasyPay Module ScreenShot](https://raw.githubusercontent.com/FahadYousafMahar/easypay-whmcs-gateway/master/scrnshot.PNG)
