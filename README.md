@@ -1,6 +1,10 @@
 # easypay-whmcs-gateway
 EasyPay (EasyPaisa) Payment Gateway for WHMCS 
 
+![Contributors](https://img.shields.io/github/contributors/fahadyousafmahar/easypay-whmcs-gateway.svg)
+![License](https://img.shields.io/github/license/fahadyousafmahar/easypay-whmcs-gateway.svg)
+![Repo Size](https://img.shields.io/github/repo-size/fahadyousafmahar/easypay-whmcs-gateway.svg)
+
 ### Description
 EasyPay Module for WHMCS (Web Host Manager Complete Solution) to integrate EasyPaisa online payments.
 
