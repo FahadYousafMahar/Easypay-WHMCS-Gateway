@@ -1,5 +1,5 @@
 # easypay-whmcs-gateway
-EasyPay (EasyPaisa) Merchant Gateway for WHMCS 
+EasyPay (EasyPaisa) Payment Gateway for WHMCS 
 
 ### Description
 Its EasyPay Module for WHMCS (Web Host Manager Complete Solution) to integrate EasyPaisa online payments.
