@@ -1,19 +1,8 @@
 <?php
 /**
  * WHMCS EasyPay Module
- * This is the EasyPay (EasyPaisa) Payment Module for WebIT.pk Billing Area
- *
- *   __          __  _    _____ _______      _
- *   \ \        / / | |  |_   _|__   __|    | |
- *    \ \  /\  / /__| |__  | |    | |  _ __ | | __
- *     \ \/  \/ / _ \ '_ \ | |    | | | '_ \| |/ /
- *      \  /\  /  __/ |_) || |_   | |_| |_) |   <
- *       \/  \/ \___|_.__/_____|  |_(_) .__/|_|\_\
- *                                    | |
- *                                    |_|
- *
- * @see http://webit.pk/
- * @copyright Copyright (c) WebIT.pk Limited 2017 - Onwards
+ * This is the EasyPay (EasyPaisa) Payment Module for WHMCS
+ * @author Fahad Yousaf mahar (www.webit.pk)
  * @license MIT
  */
 
@@ -22,7 +11,7 @@ if (!defined("WHMCS")) {
 }
 
 /**
- * Define module related meta data.
+ * EasyPay metaData
  *
  * Values returned here are used to determine module related capabilities and
  * settings.
@@ -213,7 +202,7 @@ function easypay_link($params)
     // Generation of MerchantHashedRequest
     $hash = getHashedRequest($hashKey, $orderId, $amount, $autoRedirect, $email, $expiryDate, $storeId, $callback);
 
-	// Post Fields to be placed in HTML form on invoice page
+    // Post Fields to be placed in HTML form on invoice page
     $postfields = array();
     $postfields['storeId'] = $storeId;
     $postfields['merchantHashedReq'] = $hash;
