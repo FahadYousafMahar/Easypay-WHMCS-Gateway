@@ -36,10 +36,6 @@ If you are stuck anywhere or need any help you can raise an issue.
 
 ![WHMCS EasyPay Module ScreenShot](https://raw.githubusercontent.com/FahadYousafMahar/easypay-whmcs-gateway/master/scrnshot.PNG)
 
-## Built With
-
-* [BRACKETS](http://www.brackets.io/) - The Best Code Editor in Web & World (Ranked by ME - the Author)
-
 ## Authors
 
 * **Fahad Yousaf Mahar** - [WebIT.pk](https://webit.pk)
