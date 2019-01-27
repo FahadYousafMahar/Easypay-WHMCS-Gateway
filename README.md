@@ -2,9 +2,9 @@
 EasyPay (EasyPaisa) Payment Gateway for WHMCS 
 
 ### Description
-Its EasyPay Module for WHMCS (Web Host Manager Complete Solution) to integrate EasyPaisa online payments.
+EasyPay Module for WHMCS (Web Host Manager Complete Solution) to integrate EasyPaisa online payments.
 
-The gateway enables EasyPaisa Token Payments, Mobile Account Payments & Visa/Master Card Payments for WHMCS clients.
+The gateway enables EasyPaisa Token Payments, Mobile Account Payments & Visa/Master Card Payments for WHMCS.
 
 ### System Requirements
 
