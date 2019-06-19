@@ -30,7 +30,7 @@ The gateway enables EasyPaisa Token Payments, Mobile Account Payments & Visa/Mas
     Secret Hash Key : XXXXYYYYZZZZ
     Test Mode 		: Yes/No
 7- Activate the gateway & Your WHMCS setup is done.
-8- Now move to EasyPaisa Merchant portal and set IPN Handler to https://YourWHMCSinstallationDIRECTORY/modules/callback/EasyPay.php
+8- Now move to EasyPaisa Merchant portal and set IPN Handler to https://YourWHMCSinstallationDIRECTORY/modules/gateways/callback/EasyPay.php
 ```
 
 Now your clients can pay with EasyPay - EasyPaisa.
