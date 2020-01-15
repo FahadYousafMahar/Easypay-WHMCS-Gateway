@@ -1,6 +1,8 @@
 # easypay-whmcs-gateway
 EasyPay (EasyPaisa) Payment Gateway for WHMCS 
 
+https://marketplace.whmcs.com/product/4968
+
 ![Contributors](https://img.shields.io/github/contributors/fahadyousafmahar/easypay-whmcs-gateway.svg)
 ![License](https://img.shields.io/github/license/fahadyousafmahar/easypay-whmcs-gateway.svg)
 ![Repo Size](https://img.shields.io/github/repo-size/fahadyousafmahar/easypay-whmcs-gateway.svg)
