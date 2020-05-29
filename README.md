@@ -1,5 +1,5 @@
 # easypay-whmcs-gateway
-EasyPay (EasyPaisa) Payment Gateway for WHMCS 
+EasyPay (EasyPaisa) Payment Gateway for WHMCS (test)
 
 ![Contributors](https://img.shields.io/github/contributors/fahadyousafmahar/easypay-whmcs-gateway.svg)
 ![License](https://img.shields.io/github/license/fahadyousafmahar/easypay-whmcs-gateway.svg)
