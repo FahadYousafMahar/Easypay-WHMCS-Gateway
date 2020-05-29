@@ -1,5 +1,5 @@
 # easypay-whmcs-gateway
-EasyPay (EasyPaisa) Payment Gateway for WHMCS (test)
+EasyPay (EasyPaisa) Payment Gateway for WHMCS
 
 https://marketplace.whmcs.com/product/4968
 
