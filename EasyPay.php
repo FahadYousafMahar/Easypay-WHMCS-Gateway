@@ -95,7 +95,7 @@ function getHashedRequest($hKey, $orderId, $amt, $autoRed, $email, $expiryDate, 
 		$hashRequest = '';
 		if(strlen($hKey) > 0 && (strlen($hKey) == 16 || strlen($hKey) == 24 || strlen($hKey) == 32 )) {
 			// Create Parameter map
-			error_log('Order INFO: '. $orderId);
+			//error_log('Order INFO: '. $orderId);
 			$paramMap = array();
 			$paramMap['amount']  = $amt ;
 			$paramMap['autoRedirect']  = $autoRed ;
@@ -112,7 +112,7 @@ function getHashedRequest($hKey, $orderId, $amt, $autoRed, $email, $expiryDate, 
 				$mapString .=  $key.'='.$val.'&';
 			}
 			$mapString  = substr($mapString , 0, -1);
-			error_log('MAPString: '.$mapString);
+			// error_log('MAPString: '.$mapString);
 
 			// Encrypting mapString
 			function pkcs5_pad($text, $blocksize) {
@@ -132,7 +132,7 @@ function getHashedRequest($hKey, $orderId, $amt, $autoRed, $email, $expiryDate, 
 			$mapString = pkcs5_pad($mapString, $block_size);
 			$crypttext = mcrypt_encrypt($alg, $hKey, $mapString, $mode, $iv);
 			$hashRequest = base64_encode($crypttext);
-			error_log('hashReq: '.$hashRequest);
+			//error_log('hashReq: '.$hashRequest);
 		}
 		return $hashRequest;
 	}
