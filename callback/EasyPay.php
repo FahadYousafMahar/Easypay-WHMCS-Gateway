@@ -36,14 +36,14 @@ if (!$gatewayParams['type']) {
     die("Module Not Activated");
 } ?>
 
-<?php if(isset($_GET['auth_token'])){ ?>
+<?php if(isset($_REQUEST['auth_token'])){ ?>
 <html>
 <head>
   <title>Loading ...</title>
 </head>
 <body>
     <form action="<?php echo $confirmUrl;?>" method="POST" id="easyPayAuthForm">
-        <input type="hidden" name="auth_token" value="<?php echo $_GET['auth_token']; ?>">
+        <input type="hidden" name="auth_token" value="<?php echo $_REQUEST['auth_token']; ?>">
         <input type="hidden" name="postBackURL" value="<?php echo $systemUrl.'modules/gateways/callback/EasyPay.php'; ?>">
         <button type="submit" name="pay" class="btn btn-success">Processing...</button>
     </form>
@@ -57,8 +57,8 @@ if (!$gatewayParams['type']) {
 
 <?php exit; }
 // Retrieve data returned in payment gateway callback
-elseif (isset($_GET['paymentToken']))
-{ $invoiceId = $_GET['orderRefNumber'];
+elseif (isset($_REQUEST['paymentToken']))
+{ $invoiceId = $_REQUEST['orderRefNumber'];
 ?>
 <html>
 <head>
@@ -71,17 +71,17 @@ elseif (isset($_GET['paymentToken']))
   <h2>Token Issued ... </h2>
     </div>
 <div class="content">
-  <h1>Token # <?php echo $_GET['paymentToken'] ?></h1>
+  <h1>Token # <?php echo $_REQUEST['paymentToken'] ?></h1>
   <h2>EasyPaisa</h2>
   <p>Payments</p>
 </div>
 </html>
 <?php exit; }
 
-elseif(isset($_GET['orderRefNumber']))
+elseif(isset($_REQUEST['orderRefNumber']))
 {
-$invoiceId = $_GET['orderRefNumber'];
-if($_GET['success']=="true"){
+$invoiceId = $_REQUEST['orderRefNumber'];
+if($_REQUEST['success']=="true"){
     $status='paymentsuccess=1';
 }else{
     $status='paymentfailed=1';
@@ -91,11 +91,11 @@ if($_GET['success']=="true"){
     </script>
 <?php
 }
-if (isset($_GET['url']))
+if (isset($_REQUEST['url']))
 {
 // Matching if the URL == easypay.easypaisa.com.pk
 $web = '/^https:\/\/easypay\.easypaisa\.com\.pk\//i';
-$url = $_GET['url'];
+$url = $_REQUEST['url'];
 if (preg_match($web,$url)){
     // If the URL was easypay's original url then we should cURL it to extract Transaction Result.
     // Using cURL to extract EasyPay IPN JSON data sent to the Callback.
@@ -163,7 +163,7 @@ checkCbTransID($transactionId."<br>".$paymentMethod);
  * @param string|array $debugData    Data to log
  * @param string $transactionStatus  Status
  */
-logTransaction($gatewayParams['name'], $_POST, "PAID");
+logTransaction($gatewayParams['name'], $_REQUEST, "PAID");
 
 if ($status=="PAID" && $storeId == $accountId){
     /**
