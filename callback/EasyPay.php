@@ -26,9 +26,9 @@ $accountId = $gatewayParams['accountID'];
  */
 $testMode = $gatewayParams['testMode'];
 if ( !$testMode ) {
-    $confirmUrl = 'https://easypay.easypaisa.com.pk/easypay/Confirm.jsf';
+    $web = '/^https:\/\/easypay\.easypaisa\.com\.pk\//i';
 }else{
-    $confirmUrl = 'https://easypaystg.easypaisa.com.pk/easypay/Confirm.jsf';
+    $web = '/^https:\/\/easypaystg\.easypaisa\.com\.pk\//i';
 }
 
 // Die if module is not active.
@@ -94,7 +94,6 @@ if($_REQUEST['success']=="true"){
 if (isset($_REQUEST['url']))
 {
 // Matching if the URL == easypay.easypaisa.com.pk
-$web = '/^https:\/\/easypay\.easypaisa\.com\.pk\//i';
 $url = $_REQUEST['url'];
 if (preg_match($web,$url)){
     // If the URL was easypay's original url then we should cURL it to extract Transaction Result.
