@@ -26,8 +26,10 @@ $accountId = $gatewayParams['accountID'];
  */
 $testMode = $gatewayParams['testMode'];
 if ( !$testMode ) {
+    $confirmUrl = 'https://easypay.easypaisa.com.pk/easypay/Confirm.jsf';
     $web = '/^https:\/\/easypay\.easypaisa\.com\.pk\//i';
 }else{
+    $confirmUrl = 'https://easypaystg.easypaisa.com.pk/easypay/Confirm.jsf';
     $web = '/^https:\/\/easypaystg\.easypaisa\.com\.pk\//i';
 }
 
