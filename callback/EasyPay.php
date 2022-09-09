@@ -26,9 +26,11 @@ $accountId = $gatewayParams['accountID'];
  */
 $testMode = $gatewayParams['testMode'];
 if ( !$testMode ) {
-    $web = 'https://easypay.easypaisa.com.pk/easypay/Confirm.jsf';
+    $confirmUrl = 'https://easypay.easypaisa.com.pk/easypay/Confirm.jsf';
+    $web = '/^https:\/\/easypay\.easypaisa\.com\.pk\//i';
 }else{
-    $web = 'https://easypaystg.easypaisa.com.pk/easypay/Confirm.jsf';
+    $confirmUrl = 'https://easypaystg.easypaisa.com.pk/easypay/Confirm.jsf';
+    $web = '/^https:\/\/easypaystg\.easypaisa\.com\.pk\//i';
 }
 
 // Die if module is not active.
@@ -42,7 +44,7 @@ if (!$gatewayParams['type']) {
   <title>Loading ...</title>
 </head>
 <body>
-    <form action="<?php echo $web;?>" method="POST" id="easyPayAuthForm">
+    <form action="<?php echo $confirmUrl;?>" method="POST" id="easyPayAuthForm">
         <input type="hidden" name="auth_token" value="<?php echo $_REQUEST['auth_token']; ?>">
         <input type="hidden" name="postBackURL" value="<?php echo $systemUrl.'modules/gateways/callback/EasyPay.php'; ?>">
         <button type="submit" name="pay" class="btn btn-success">Processing...</button>
